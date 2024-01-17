@@ -1,0 +1,192 @@
+# Data Types
+
+Every value in Rust is of a certain data type, which tells Rust what kind of data is being specified so it knows how to work with that data. We’ll look at two data type subsets: 
+
+1. Scalar
+2. Compound
+
+Keep in mind that Rust is a statically typed language, which means that it must know the types of all variables at compile time. The compiler can usually infer what type we want to use based on the value and how we use it. 
+
+## Scalar Types
+
+A scalar type represents a single value. Rust has four primary scalar types: integers, floating-point numbers, Booleans, and characters. You may recognize these from other programming languages.
+
+### Integer Types:
+
+- An integer is a number without a fractional component.
+- The default integer type is `i32`.
+- Signed integers: `i8`, `i16`, `i32`, `i64`, `i128`, `isize`
+- Unsigned integers: `u8`, `u16`, `u32`, `u64`, `u128`, `usize`
+- Each variant can be either signed(+/-) or unsigned(+) and has an explicit size.
+   
+   Example:
+   ```rust
+   let integer: i32 = 42;
+   let unsigned_integer: u64 = 100;
+   ```
+
+- Each signed variant can store numbers from -(2<sup>n - 1</sup>) to 2<sup>n - 1</sup> - 1 inclusive, where n is the number of bits that variant uses.
+- Unsigned variants can store numbers from 0 to 2<sup>n</sup> - 1.
+- The `isize` and `usize` types depend on the architecture of the computer your program is running on.
+
+### Floating-Point Types:
+
+- `f32`: 32-bit floating point
+- `f64`: 64-bit floating point, default.
+
+   Example:
+   ```rust
+   let float: f64 = 3.14;
+   ```
+- Floating-point numbers are represented according to the IEEE-754 standard. The f32 type is a single-precision float, and f64 has double precision.
+
+### Boolean Type:
+
+- `bool`: Represents true or false values.
+- Booleans are one byte in size.
+
+   Example:
+   ```rust
+   let is_true: bool = true;
+   ```
+
+### Character Type:
+
+- `char`: Represents a single Unicode character.
+
+   Example:
+   ```rust
+   let character: char = 'A';
+   ```
+
+## Compound Types
+
+Compound types can group multiple values into one type. Rust has two primitive compound types: tuples and arrays.
+
+### Array Type:
+
+- Fixed-size, homogeneous data structure.
+- Every element of an array must have the same type.
+- Arrays are useful when you want your data allocated on the stack rather than the heap or when you want to ensure you always have a fixed number of elements.  
+
+   Example:
+   ```rust
+   let a: [i32; 3] = [1, 2, 3];
+
+   let first = a[0];  // Accessing array element
+   let second = a[1];
+   ```
+- Here, i32 is the type of each element. After the semicolon, the number 3 indicates the array contains three elements.
+- You can also initialize an array to contain the same value for each element.
+  
+    Example:
+   ```rust
+   let a: [5; 3] = [5, 5, 5];
+
+   let first = a[0];
+   let second = a[1];
+   ```
+
+### Tuple Type:
+
+- Tuples group together elements of different types into one compound type. 
+- Fixed-size, heterogeneous data structure.
+- Oonce declared, they cannot grow or shrink in size.
+  
+   Example:
+   ```rust
+   let tup: (i32, f64, &str) = (42, 3.14, "tuple");
+   ```
+- We can use pattern matching to destructure a tuple value.
+
+   Example:
+   ```rust
+   let (x, y, z) = tup;
+
+   println!("The value of y is: {y}");  // prints 3.14
+   ```
+- We can also access a tuple element directly by using a period (.) followed by the index of the value.
+
+   Example:
+   ```rust
+   let first = tup.0;  // 42
+   let second = tup.1; // 3.14
+
+   println!("The value of y is: {y}");
+   ```
+The tuple without any values has a special name, unit. This value and its corresponding type are both written () and represent an empty value or an empty return type. Expressions implicitly return the unit value if they don’t return any other value.
+
+## Some other types
+
+We wiil learn about them in detail later.
+
+### String Type:
+
+- Represents a sequence of characters.
+- The default string type is a string slice `&str`.
+- Strings can be either string slices or owned strings `String`. 
+- String slices are often used for string literals, while `String` is used for dynamically allocated strings.
+  
+   Example:
+   ```rust
+   let string_slice: &str = "Hello, Rust!";
+   let owned_string: String = String::from("Rust is awesome!");
+   ```
+
+### Slice Type:
+
+- Represents a view into a portion of a contiguous sequence. 
+- Slice must reference an existing array or slice.
+- Slices are dynamically sized and provide a flexible way to work with arrays.
+
+   Example:
+   ```rust
+   let array = [1, 2, 3, 4, 5];
+   let slice: &[i32] = &array[1..4]; // includes elements from index 1 to 3
+   
+   // Accessing the elements of the slice
+   for num in slice {
+      println!("Number: {}", num);
+   }   
+   ```
+
+### Reference Types:
+
+- References allow you to borrow values without taking ownership. 
+- Reference must be explicitly created by borrowing.
+- `&T`: Immutable reference, used for read-only access.
+- `&mut T`: Mutable reference, used for read-write access.
+
+   Example:
+   ```rust
+   let x = 42;
+   let reference: &i32 = &x;
+   let mutable_reference: &mut i32 = &mut x;
+   ```
+- **Rules for reference:** 
+    - Multiple immutable references to the same data are allowed.
+    - Only one mutable reference to a piece of data is allowed within a specific scope.
+
+   Example:
+   ```rust
+    let x = 10;
+    let mut y = 10;
+    
+    // Creating an immutable reference to x
+    let reference: &i32 = &x;
+
+    // Creating a mutable reference to y
+    let mutable_reference: &mut i32 = &mut y;
+    
+    // Modifying the value through the mutable reference
+    *mutable_reference += 5;
+    
+    // Accessing the value through the reference
+    println!("Value through immutable reference: {}", *reference);  // 10
+    println!("Value through mutable reference: {}", y);  // 15
+   ```
+- The `*` operator is used to dereference the reference and access the underlying value.
+
+These are the basic data types in Rust. Understanding and using these types effectively will help you write safe and expressive Rust code.
+
+For more information read the [rust book](https://doc.rust-lang.org/book/ch03-02-data-types.html)
