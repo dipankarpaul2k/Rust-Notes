@@ -1,4 +1,19 @@
+<!-- omit in toc -->
 # Data Types
+
+- [Scalar Types](#scalar-types)
+  - [Integer Types:](#integer-types)
+  - [Floating-Point Types:](#floating-point-types)
+  - [Boolean Type:](#boolean-type)
+  - [Character Type:](#character-type)
+- [Compound Types](#compound-types)
+  - [Array Type:](#array-type)
+  - [Tuple Type:](#tuple-type)
+- [Some other types](#some-other-types)
+  - [String Type:](#string-type)
+  - [Slice Type:](#slice-type)
+  - [Reference Types:](#reference-types)
+
 
 Every value in Rust is of a certain data type, which tells Rust what kind of data is being specified so it knows how to work with that data. We’ll look at two data type subsets: 
 
@@ -189,4 +204,4 @@ We wiil learn about them in detail later.
 
 These are the basic data types in Rust. Understanding and using these types effectively will help you write safe and expressive Rust code.
 
-For more information read the [rust book](https://doc.rust-lang.org/book/ch03-02-data-types.html)
+For more information read the [rust book](https://doc.rust-lang.org/book/ch03-02-data-types.html).

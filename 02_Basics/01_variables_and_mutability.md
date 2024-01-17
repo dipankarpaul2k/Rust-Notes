@@ -1,4 +1,14 @@
+<!-- omit in toc -->
 # Variables and Mutability
+
+- [Variables:](#variables)
+- [Mutability:](#mutability)
+- [Shadowing:](#shadowing)
+- [Constants:](#constants)
+- [Type Annotations:](#type-annotations)
+- [Example combining mutability, shadowing, and constants:](#example-combining-mutability-shadowing-and-constants)
+- [Does shadowing works on const as well?](#does-shadowing-works-on-const-as-well)
+
 
 ## Variables:
 - In Rust, variables are created using the `let` keyword.
@@ -40,7 +50,8 @@
   ```
 
 ## Type Annotations:
-- While Rust can often infer the variable type, you can explicitly specify it using a type annotation. (We will talk more about the type annotation in the next section.)
+
+- While Rust can often infer the variable type, you can explicitly specify it using a type annotation.(We will talk more about the type annotation in the next section.)
   
   Example:
   ```rust
@@ -81,4 +92,4 @@ const MAX_POINTS: u32 = 100_000;
 
 Attempting to redeclare or shadow the constant `MAX_POINTS` with a new value will cause a compilation error. If you need a variable with a changeable value, use a mutable variable instead of a constant.
 
-For more information read the [rust book](https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html)
+For more information read the [rust book](https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html).
