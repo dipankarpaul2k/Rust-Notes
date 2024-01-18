@@ -108,34 +108,36 @@ If necessary, you can use the `return` keyword to exit a function prematurely an
 - Multi-line comments require `//` on each line. 
 - Comments can be placed at the end of lines containing code. 
 
-  Example:
-  ```rust
-  fn main() {
-    let lucky_number = 7; // I’m feeling lucky today
-  }
-  ```
+Example:
+```rust
+fn main() {
+  let lucky_number = 7; // I’m feeling lucky today
+}
+```
 - However, the more common style involves putting comments on a separate line above the code they annotate. 
 
-  Example:
-  ```rust
-  fn main() {
-    // I’m feeling lucky today
-    let lucky_number = 7;
-  }
-  ```
+Example:
+```rust
+fn main() {
+  // I’m feeling lucky today
+  let lucky_number = 7;
+}
+```
 - Rust also supports documentation comments, denoted by `///`, providing a distinct way to document code for tools and external users.
 
-  Example:
-  ```rust
-  /// This function adds two numbers together.
-  ///
-  /// # Examples
-  ///
-  /// ```
-  /// let result = add_numbers(3, 4);
-  /// assert_eq!(result, 7);
-  /// ```
-  fn add_numbers(a: i32, b: i32) -> i32 {
-      a + b
-  }
-  ```
+Example:
+```rust
+/// This function adds two numbers together.
+///
+/// # Examples
+///
+/// ```
+/// let result = add_numbers(3, 4);
+/// assert_eq!(result, 7);
+/// ```
+fn add_numbers(a: i32, b: i32) -> i32 {
+    a + b
+}
+```
+
+For more information read the [rust book](https://doc.rust-lang.org/book/ch03-03-how-functions-work.html).

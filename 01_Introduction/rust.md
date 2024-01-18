@@ -18,4 +18,4 @@ In summary, Rust offers a unique combination of memory safety and zero-cost abst
 
 ## Environment Setup
 
-Let’s start your Rust journey by installing Rust on Linux, macOS, and Windows. You can find the latest guide in this [link](https://doc.rust-lang.org/book/ch01-01-installation.html).
+Let’s start your Rust journey by installing Rust on Linux, macOS, or Windows. You can find the latest guide in this [link](https://doc.rust-lang.org/book/ch01-01-installation.html).

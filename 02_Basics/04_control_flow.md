@@ -120,6 +120,53 @@ fn main() {
 }
 ```
 
+Sometime you may want to use the result of `loop` in your code, to do this, you can add the value you want returned after the `break` expression; that value will be returned out of the loop so you can use it.
+
+Example:
+```rust
+fn main() {
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    println!("The result is {result}"); // 20
+}
+```
+
+#### `loop` inside `loop`:
+
+In Rust, you can create nested loops by placing one `loop` inside another one. This can be useful for more complex control flow scenarios. But in this case, `break` and `continue` will apply to the innermost loop at that point. 
+
+To avoid this problem, rust have something called `loop labels`. Loop labels allow you to name loops, and then use the `break` or `continue` statements with a specific label to indicate which loop you want to affect.
+
+>Loop labels must begin with a single quote.
+
+Example:
+```rust
+'outer: loop {
+    // Code inside the outer loop
+    'inner: loop {
+        // Code inside the inner loop
+        
+        if some_condition {
+            break 'inner;
+        }
+        
+        if another_condition {
+            break 'outer;
+        }
+    }
+    // Code after the inner loop
+}
+// Code after the labeled loops
+```
+
 ### `while`:
 
 The `while` loop continues executing the block of code as long as the specified condition is `true`.
@@ -136,16 +183,19 @@ fn main() {
 }
 ```
 
+This construct eliminates a lot of nesting that would be necessary if you used `loop`, `if`, `else`, and `break`, and it’s clearer. While a condition evaluates to true, the code runs; otherwise, it exits the loop.
+
 ### `for`:
 
-The `for` loop iterates over a range or an iterable object, executing the block of code for each iteration.
+The `for` loop iterates over a range, a collection or an iterable object, executing the block of code for each iteration.
 
 Example with range:
 ```rust
 fn main() {
-    for number in 1..=5 {
-        println!("Number: {}", number);
+    for number in (1..=3).rev() {   // rev(), to reverse the range
+        println!("{number}!");
     }
+    println!("LIFTOFF!!!"); // Output: 3 2 1 "LIFTOFF!!!"
 }
 ```
 
@@ -160,7 +210,24 @@ fn main() {
 }
 ```
 
-Rust's `for` loop is quite versatile, supporting various iterable objects.
+The `.iter()` method is used to create an iterator over the elements of the array `numbers`. The loop then iterates over each element using this iterator. Using `.iter()`, does not consume the array; it only borrows the elements. This means the array `numbers` can still be used after the loop.
+
+Example without iterator:
+```rust
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a {
+        println!("the value is: {element}");
+    }
+}
+```
+
+Here, the array `a` is directly used in the loop. In this case, the loop consumes the array, and each iteration takes `ownership` of each element of the array. If the elements of the array were of a type that does not implement the `Copy` trait, this approach would move the elements out of the array, and the array `a` would be unusable after the loop.
+
+> We will learn about the `Ownership` in the upcoming notes.
+
+Rust's `for` loop is quite versatile, supporting various iterable objects. 
 
 ### Loop Control Statements:
 
@@ -185,3 +252,5 @@ fn main() {
 ```
 
 Loops in Rust offer flexibility and control, ensuring that you can efficiently iterate or repeatedly execute code based on your specific requirements.
+
+For more information read the [rust book](https://doc.rust-lang.org/book/ch03-05-control-flow.html).
