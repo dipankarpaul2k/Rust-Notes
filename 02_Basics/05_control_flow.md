@@ -1,6 +1,20 @@
+<!-- omit in toc -->
 # Control Flow
 
 The ability to control the flow of code execution based on conditions is fundamental. Rust, a language known for its emphasis on safety and performance, provides constructs such as `if` expressions and `loops` to control the flow of operations.
+
+- [if Expressions](#if-expressions)
+  - [Basic `if-else`:](#basic-if-else)
+  - [`if-else if` ladder:](#if-else-if-ladder)
+  - [Using `if` in Assignments:](#using-if-in-assignments)
+  - [Ternary Operator (Shorthand for Simple `if-else`):](#ternary-operator-shorthand-for-simple-if-else)
+- [Repetition with Loops](#repetition-with-loops)
+  - [`loop`:](#loop)
+    - [`loop` inside `loop`:](#loop-inside-loop)
+  - [`while`:](#while)
+  - [`for`:](#for)
+  - [Loop Control Statements:](#loop-control-statements)
+
 
 ## if Expressions
 
