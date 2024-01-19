@@ -104,11 +104,34 @@ let second = a[1];
   
 Example:
 ```rust
-let a: [5; 3] = [5, 5, 5];
+let numbers = [3; 5];
 
-let first = a[0];
-let second = a[1];
+println!("numbers = {:?}", numbers);  // [3, 3, 3, 3, 3]
 ```
+
+**Mutable Array in Rust**
+
+In Rust, an array is immutable, which means we cannot change its elements once it is created.
+
+However, we can create a mutable array by using the mut keyword before assigning it to a variable.
+
+Example:
+```rust
+fn main() {
+    let mut numbers: [i32; 5] = [1, 2, 3, 4, 5];
+    
+    println!("original array = {:?}", array); // [1, 2, 3, 4, 5]
+    
+    // change the value of the 3rd element in the array
+    numbers[2] = 0;
+    
+    println!("changed array = {:?}", numbers); // [1, 2, 0, 4, 5]
+}
+```
+
+We changed the element at index `2` (third element) from `3` to `0`. This is possible because we have created the numbers array as mutable.
+
+> **Note:** Values inside an array can only be modified but cannot be deleted because the size of the array is fixed after initialization.
 
 ### Tuple Type:
 
@@ -120,7 +143,7 @@ Example:
 ```rust
 let tup: (i32, f64, &str) = (42, 3.14, "tuple");
 ```
-- We can use pattern matching to destructure a tuple value.
+- We can break down tuples into smaller variables, known as destructuring.
 
 Example:
 ```rust
@@ -128,6 +151,9 @@ let (x, y, z) = tup;
 
 println!("The value of y is: {y}");  // prints 3.14
 ```
+
+> **Note:** Destructuring a tuple is also known as **tuple unpacking.**
+
 - We can also access a tuple element directly by using a period (.) followed by the index of the value.
 
 Example:
@@ -138,6 +164,34 @@ let second = tup.1; // 3.14
 println!("The value of y is: {y}");
 ```
 The tuple without any values has a special name, unit. This value and its corresponding type are both written () and represent an empty value or an empty return type. Expressions implicitly return the unit value if they don’t return any other value.
+
+**Mutable Tuple**
+
+In Rust, a tuple is immutable by default, which means we cannot change its elements once it is created.
+
+However, we can create a mutable array by using the mut keyword before assigning it to a variable.
+
+Example:
+```rust
+fn main() {
+    // initialize a mutable tuple
+    let mut mountain_heights = ("Everest", 8848, "Fishtail", 6993);
+    
+    println!("Original tuple = {:?}", mountain_heights);
+    // prints => ("Everest", 8848, "Fishtail", 6993)
+    
+    // change 3rd and 4th element of a mutable tuple
+    mountain_heights.2 = "Lhotse";
+    mountain_heights.3 = 8516;
+    
+    println!("Changed tuple = {:?}", mountain_heights);
+    // prints => ("Everest", 8848, "Lhotse", 8516)
+}
+```
+
+Here, we create a mutable tuple named mountain_heights. We then change its `2nd` and `3rd` tuple index.
+
+> **Note:** You can only change the element of a tuple to the same type as when it was created. Changing data types is not allowed after tuple creation.
 
 ## Some other types
 

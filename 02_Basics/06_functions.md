@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # Functions
 
-In Rust code, functions play a crucial role. You’ve already seen one of the most important functions in the language: the `main` function, which is the entry point of the rust programs.
+Functions are reusable blocks of code that perform a specific task. In Rust code, functions play a crucial role. You’ve already seen one of the most important functions in the language: the `main` function, which is the entry point of the rust programs.
 
 Snake case is the conventional style for naming functions and variables in Rust. This style involves using all lowercase letters and separating words with underscores.
 
@@ -37,7 +37,9 @@ fn main() {
 
 In this example, `add_numbers` is a function that takes two parameters (`a` and `b`) and returns their sum. The `greet` function has no parameters and no return value.
 
-In function signatures, you must declare the type of each parameter. 
+In function, you must declare the type of each parameter.
+
+> **Note:** Rust code uses a small case as the convention for defining a function name. An extended function name with multiple words will have underscores in between words.
 
 ## Statements and Expressions:
 
@@ -46,26 +48,26 @@ In function signatures, you must declare the type of each parameter.
 - They end with a semicolon `;`.
 - Function definitions are also statements.
   
-  Example:
-  ```rust
-  let x = 5; // statement
-  println!("Value of x: {}", x); // statement
-  ```
+Example:
+```rust
+let x = 5; // statement
+println!("Value of x: {}", x); // statement
+```
 
 ### Expressions:
 - Expressions evaluate to a value.
 - They do not end with a semicolon, as the semicolon turns an expression into a statement.
   
-  Example:
-  ```rust
-  let y = {
-      let a = 3;
-      let b = 4;
-      a + b // expression without a semicolon, returns the result
-  };
+Example:
+```rust
+let y = {
+    let a = 3;
+    let b = 4;
+    a + b // expression without a semicolon, returns the result
+};
 
-  println!("Value of y: {}", y);
-  ```
+println!("Value of y: {}", y);
+```
 
 In the second example, the block `{}` contains an expression (`a + b`) without a semicolon, making it the value of the block. This value is then assigned to `y`.
 
@@ -81,23 +83,47 @@ Notably, the `return` keyword is optional in functions, the return value of the 
 
 If necessary, you can use the `return` keyword to exit a function prematurely and specify a particular value to be returned. However, in most cases, the final expression in the function block serves as the implicit return value. 
 
-  Example:
-  ```rust
-  fn five() -> i32 {
-    5   // // This is the implicit return value
-  }
+Example:
+```rust
+fn five() -> i32 {
+  5   // // This is the implicit return value
+}
 
-  fn plus_one(x: i32) -> i32 {
-    return x + 1;   // Explicit use of return keyword
-  }
+fn plus_one(x: i32) -> i32 {
+  return x + 1;   // Explicit use of return keyword
+}
 
-  fn main() {
-    let x = five();
-    let y = plus_one(5);
-    println!("The value of x is: {x}");
-    println!("The value of y is: {y}"); // 6
-  }
-  ```
+fn main() {
+  let x = five();
+  let y = plus_one(5);
+  println!("The value of x is: {x}");
+  println!("The value of y is: {y}"); // 6
+}
+```
+
+**How to pass by reference in Rust?**
+
+We can use pass by reference to pass a pointer of the variable instead of the actual variable. For example,
+
+```rust
+fn main() {
+  let word = String::from("hello");
+
+  // passing reference of word variable
+  let len = calculate_length(&word);
+
+  println!("The length of '{}' is {}.", word, len);
+  // Prinys -> The length of 'hello' is 5.
+}
+
+fn calculate_length(s: &String) -> usize {
+  s.len()
+}
+```
+
+Here, we pass the `word` variable as a reference to the function `calculate_length()` with` &word`.
+
+> **Note:** We will talk about reference in details in upcoming notes.
 
 ## Comments:
 
