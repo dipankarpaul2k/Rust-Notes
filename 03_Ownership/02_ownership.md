@@ -78,7 +78,7 @@ A `String` stores data both on the `stack` and the `heap`. This means that when 
 | 5     | a     |
 
 
-
+![Alt text](image.png)
 
 [![](https://mermaid.ink/img/pako:eNoljj0LwkAQRP_KsZVCAtZXCIqFhTZJ6VksdxtzJPfBukEl5L97mqmG4TG8GWxyBBq6Mb1sjyzq0pioSg63VtAOKgvfVV3vj5szYVY-Onqr3XaFoIJAHNC78jH_NgPSUyADulSHPBgwcSkcTpLaT7SghSeqYMoOhU4eH4wBdIfjs6zkvCS-rlJ_t-ULqB01Cg?type=png)](https://mermaid.live/edit#pako:eNoljj0LwkAQRP_KsZVCAtZXCIqFhTZJ6VksdxtzJPfBukEl5L97mqmG4TG8GWxyBBq6Mb1sjyzq0pioSg63VtAOKgvfVV3vj5szYVY-Onqr3XaFoIJAHNC78jH_NgPSUyADulSHPBgwcSkcTpLaT7SghSeqYMoOhU4eH4wBdIfjs6zkvCS-rlJ_t-ULqB01Cg)
 
