@@ -105,7 +105,7 @@ The memory now looks like this:
 | ----------- | -------- | --------- |
 | 5476        |          | 100       |
 
-Here, the variable `x` holds a pointer to the address `-->5678` (an arbitrary address used for demonstration). Heap can be allocated and freed in any order. Thus it can end up with different addresses and create holes between addresses.
+Here, the variable `x` holds a pointer to the address `→5678` (an arbitrary address used for demonstration). Heap can be allocated and freed in any order. Thus it can end up with different addresses and create holes between addresses.
 
 So when `x` goes away, it first frees the memory allocated on the heap.
 
