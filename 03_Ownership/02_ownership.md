@@ -1,6 +1,17 @@
+<!-- omit in toc -->
 # Ownership
 
 Rust manages computer memory through **ownership rules** without memory leaks and runtime slowness. Unlike other languages with garbage collection or manual memory allocation, Rust's compiler enforces ownership rules. If violated, the program won't compile, ensuring efficient memory management.
+
+- [Variable Scope](#variable-scope)
+- [Ownership Rules in Rust](#ownership-rules-in-rust)
+- [Data Move](#data-move)
+- [Data Copy](#data-copy)
+- [Ownership in Functions](#ownership-in-functions)
+  - [Passing String to a function](#passing-string-to-a-function)
+  - [Passing Integer to a function](#passing-integer-to-a-function)
+- [Ownership table](#ownership-table)
+
 
 ## Variable Scope
 
@@ -60,16 +71,16 @@ Here, `fruit1` was the owner of the String.
 
 A `String` stores data both on the `stack` and the `heap`. This means that when we bind a `String` to a variable `fruit1`, the memory representation looks like this:
 
-**Stack**
+**Stack(fruit1)**
 | Name     | Value |
-|----------|-------|
+| -------- | ----- |
 | ptr      | -->   |
 | length   | 6     |
 | capacity | 6     |
 
 **Heap**
 | Index | Value |
-|-------|-------|
+| ----- | ----- |
 | 0     | B     |
 | 1     | a     |
 | 2     | n     |
@@ -78,9 +89,31 @@ A `String` stores data both on the `stack` and the `heap`. This means that when 
 | 5     | a     |
 
 
-![Alt text](image.png)
+```mermaid
+flowchart LR
+    A[fruit1 Stack ptr] -->|Valid|B(Heap index 0)
+```
 
-[![](https://mermaid.ink/img/pako:eNoljj0LwkAQRP_KsZVCAtZXCIqFhTZJ6VksdxtzJPfBukEl5L97mqmG4TG8GWxyBBq6Mb1sjyzq0pioSg63VtAOKgvfVV3vj5szYVY-Onqr3XaFoIJAHNC78jH_NgPSUyADulSHPBgwcSkcTpLaT7SghSeqYMoOhU4eH4wBdIfjs6zkvCS-rlJ_t-ULqB01Cg?type=png)](https://mermaid.live/edit#pako:eNoljj0LwkAQRP_KsZVCAtZXCIqFhTZJ6VksdxtzJPfBukEl5L97mqmG4TG8GWxyBBq6Mb1sjyzq0pioSg63VtAOKgvfVV3vj5szYVY-Onqr3XaFoIJAHNC78jH_NgPSUyADulSHPBgwcSkcTpLaT7SghSeqYMoOhU4eH4wBdIfjs6zkvCS-rlJ_t-ULqB01Cg)
+A `String` holds a pointer that points to the memory that holds the content of the string, a length, and a capacity in the stack. The heap holds the contents of the `String`.
+
+Now, when we assign `fruit1` to `fruit2`, this is how the memory representation looks like:
+
+**Stack(fruit2)**
+| Name     | Value |
+| -------- | ----- |
+| ptr      | -->   |
+| length   | 6     |
+| capacity | 6     |
+
+```mermaid
+flowchart LR
+    A[fruit1 Stack ptr] -->|Valid|B(Heap index 0)
+    C[fruit2 Stack ptr] -->|Valid|B
+```
+
+Rust will invalidate (drop) the first variable `fruit1`, and move the value to another variable `fruit2`. This way two variables cannot point to the same content. **At any point, there is only one owner of the value.**
+
+> **Note:** The above concept is applicable for data types that don't have fixed sizes in memory and use the heap memory to store the contents.
 
 ## Data Copy
 
@@ -105,3 +138,76 @@ This copying is possible because of the `Copy` trait available in primitive type
 
 > **Note:** A `trait` is a way to define shared behavior in Rust. We will discuss the traits later.
 
+
+## Ownership in Functions
+
+Passing a variable to a function will also move or copy the value, just as an assignment. 
+- Stack-only types will copy the data when passed into a function.
+- Heap data types will move the ownership of the variable to the function.
+
+### Passing String to a function
+```rust
+fn main() {
+    // fruit comes into scope
+    let fruit = String::from("apple");
+    
+    // ownership of fruit moves into the function
+    print_fruit(fruit); // prints → apple
+    // fruit is moved to the function so is no longer available here
+    
+    println!("fruit = {}", fruit); // error
+}
+
+fn print_fruit(str: String) {   // str comes into scope
+    println!("str = {}", str);
+}   // str goes out of scope and is dropped, plus memory is freed
+```
+
+Here, the value of the `fruit` variable is moved into the function `print_fruit()` because `String` type uses heap memory.
+
+### Passing Integer to a function
+```rust
+fn main() {
+    // number comes into scope
+    let number = 10;
+    
+    // value of the number is copied into the function
+    print_number(number);
+    
+    // number variable can be used here
+    println!("number = {}", number);
+}
+
+fn print_number(value: i32) { // value comes into scope
+    println!("value = {}", value);
+}   // value goes out of scope and is dropped, plus memory is freed
+```
+
+Here, the value of the `number` variable is copied into the function `print_number()` because the `i32` (integer) type uses stack memory.
+
+## Ownership table
+
+A table summarizing types that implement the `Copy` trait and types that are typically heap-allocated. Note that the ownership behavior depends on whether the type implements `Copy`, and heap-allocated types generally involve ownership transfer.
+
+- Types that implement `Copy` have their values copied when assigned to another variable, preventing ownership transfer.
+- Heap-allocated types involve ownership transfer because they are dynamically allocated on the heap, and ownership needs to be managed.
+- Whether a custom type implements `Copy` depends on its internal structure.
+
+
+| Type                           | Implements `Copy` | Heap-Allocated | Ownership Transfer |
+| ------------------------------ | ----------------- | -------------- | ------------------ |
+| Integer Types                  | Yes               | No             | No                 |
+| Floating-Point Types           | Yes               | No             | No                 |
+| Character Type                 | Yes               | No             | No                 |
+| Boolean Type                   | Yes               | No             | No                 |
+| Tuple (if elements are `Copy`) | Yes               | No             | No                 |
+| Array (if elements are `Copy`) | Yes               | No             | No                 |
+| Structs (if fields are `Copy`) | Yes               | No             | No                 |
+| String                         | No                | Yes            | Yes                |
+| Vec                            | No                | Yes            | Yes                |
+| HashMap, HashSet               | No                | Yes            | Yes                |
+| Custom Types                   | Depends           | Depends        | Depends            |
+
+---
+
+For more information read the [rust book](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html).
