@@ -3,15 +3,7 @@
 
 Type casting allows us to convert variables of one data type to another. In Rust, we use the `as` keyword to perform type casting.
 
-- [Floating point to integer:](#floating-point-to-integer)
-- [Character to integer:](#character-to-integer)
-- [Integer to character:](#integer-to-character)
-- [Error while converting integer to character](#error-while-converting-integer-to-character)
-- [Boolean to integer](#boolean-to-integer)
-- [Limitations of Type Casting](#limitations-of-type-casting)
-
-
-## Floating point to integer:
+## Floating point to integer
 
 Example:
 ```rust
@@ -31,7 +23,7 @@ Here, decimal as u16; expression converts f64 floating-point type to u16 integer
 
 We are converting data from one type to another type manually using the `as` keyword. This type of type casting is also known as Explicit Type Casting.
 
-## Character to integer:
+## Character to integer
 
 Example:
 ```rust
@@ -50,7 +42,7 @@ In Rust, the `char` data type is internally stored as a Unicode Scalar Value. Un
 
 The Unicode value of character `A` is `65`. So, we get the output of `65` when converting the character `A` to an integer.
 
-## Integer to character:
+## Integer to character
 
 We can also convert integer type to a character type.
 
@@ -132,5 +124,7 @@ fn main() {
 ```
 
 Here, we have tried to convert the `float` type to `char`, hence we get an error. The error says that Rust is expecting a `u8` data type for conversion not `f32`.
+
+---
 
 > There are other ways to convert the data types in Rust, but those are advanced topics and will be discussed later.

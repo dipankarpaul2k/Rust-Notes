@@ -7,15 +7,7 @@ Snake case is the conventional style for naming functions and variables in Rust.
 
 Functions in Rust are declared using the `fn` keyword. They can have parameters, a return type, and a block of code defining their behavior.
 
-- [Example:](#example)
-- [Statements and Expressions:](#statements-and-expressions)
-  - [Statements:](#statements)
-  - [Expressions:](#expressions)
-- [Return Values:](#return-values)
-- [Comments:](#comments)
-
-
-## Example:
+## Example
 ```rust
 // Function with parameters and a return type
 fn add_numbers(a: i32, b: i32) -> i32 {
@@ -41,9 +33,9 @@ In function, you must declare the type of each parameter.
 
 > **Note:** Rust code uses a small case as the convention for defining a function name. An extended function name with multiple words will have underscores in between words.
 
-## Statements and Expressions:
+## Statements and Expressions
 
-### Statements:
+### Statements
 - Statements are instructions that perform an action but do not return a value.
 - They end with a semicolon `;`.
 - Function definitions are also statements.
@@ -54,7 +46,7 @@ let x = 5; // statement
 println!("Value of x: {}", x); // statement
 ```
 
-### Expressions:
+### Expressions
 - Expressions evaluate to a value.
 - They do not end with a semicolon, as the semicolon turns an expression into a statement.
   
@@ -75,7 +67,7 @@ In Rust, functions return the result of their last expression implicitly. Howeve
 
 Understanding the distinction between statements and expressions is important, especially when dealing with function return values and blocks of code in Rust.
 
-## Return Values:
+## Return Values
 
 In Rust, we must declare type of the return value after an arrow (`->`). Unlike some other languages, Rust does not require naming return values explicitly.
 
@@ -125,7 +117,7 @@ Here, we pass the `word` variable as a reference to the function `calculate_leng
 
 > **Note:** We will talk about reference in details in upcoming notes.
 
-## Comments:
+## Comments
 
 >I know comments are unrelated to functions, but I don't want to make a seperate note for this part.
 

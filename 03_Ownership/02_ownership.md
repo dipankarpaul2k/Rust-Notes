@@ -3,16 +3,6 @@
 
 Rust manages computer memory through **ownership rules** without memory leaks and runtime slowness. Unlike other languages with garbage collection or manual memory allocation, Rust's compiler enforces ownership rules. If violated, the program won't compile, ensuring efficient memory management.
 
-- [Variable Scope](#variable-scope)
-- [Ownership Rules in Rust](#ownership-rules-in-rust)
-- [Data Move](#data-move)
-- [Data Copy](#data-copy)
-- [Ownership in Functions](#ownership-in-functions)
-  - [Passing String to a function](#passing-string-to-a-function)
-  - [Passing Integer to a function](#passing-integer-to-a-function)
-- [Ownership table](#ownership-table)
-
-
 ## Variable Scope
 
 A scope is an area within the code block for which a variable is valid. In Rust, the scope of a variable defines its ownership.
@@ -33,7 +23,7 @@ Here the variable `name` is only available inside the code block, i.e., between 
 
 **Whenever a variable goes out of scope, its memory is freed.**
 
-## Ownership Rules in Rust
+## Ownership Rules
 
 Rust has some ownership rules. We must keep these rules in mind while working with Rust:
 
@@ -187,11 +177,11 @@ Here, the value of the `number` variable is copied into the function `print_numb
 
 ## Ownership table
 
-A table summarizing types that implement the `Copy` trait and types that are typically heap-allocated. Note that the ownership behavior depends on whether the type implements `Copy`, and heap-allocated types generally involve ownership transfer.
+A table summarizing types that implement the `Copy` trait and types that are typically heap-allocated.
 
-- Types that implement `Copy` have their values copied when assigned to another variable, preventing ownership transfer.
-- Heap-allocated types involve ownership transfer because they are dynamically allocated on the heap, and ownership needs to be managed.
-- Whether a custom type implements `Copy` depends on its internal structure.
+- Types that implement `Copy` trait have their values copied when assigned to another variable, preventing ownership transfer.
+- Heap-allocated types involve ownership transfer because they are dynamically allocated on the heap, and ownership needs to be managed properly.
+- Whether a compound or custom type implements `Copy` depends on its internal structure.
 
 
 | Type                           | Implements `Copy` | Heap-Allocated | Ownership Transfer |

@@ -1,15 +1,9 @@
 <!-- omit in toc -->
 # Operators
 
-In Rust, operators are symbols that represent computations or operations on values. They can be used for arithmetic, logical, bitwise, and other operations. 
+In Rust, operators are symbols that represent computations or operations on values. They can be used for arithmetic, logical, bitwise, and other operations.
 
-- [Arithmetic Operators:](#arithmetic-operators)
-- [Assignment Operators:](#assignment-operators)
-- [Comparison Operators:](#comparison-operators)
-- [Logical Operators:](#logical-operators)
-
-
-## Arithmetic Operators:
+## Arithmetic Operators
    - `+` (Addition)
    - `-` (Subtraction)
    - `*` (Multiplication)
@@ -46,7 +40,7 @@ fn main() {
 }
 ```
 
-## Assignment Operators:
+## Assignment Operators
    - `=` (Assignment)
    - `+=` (Add and assign)
    - `-= ` (Subtract and assign)
@@ -67,7 +61,7 @@ fn main() {
 }
 ```
 
-## Comparison Operators:
+## Comparison Operators
    - `==` (Equal to)
    - `!=` (Not equal to)
    - `<` (Less than)
@@ -92,7 +86,7 @@ fn main() {
 
 > **Note:** Comparison operators are also known as **relational operators**.
 
-## Logical Operators:
+## Logical Operators
    - `&&` (Logical AND) returns `true` if both exp1 and exp2 are `true`
    - `||` (Logical OR) returns `true` if any one of the expressions is `true`
    - `!` (Logical NOT) returns `true` if the expression is `false` and returns `false`, if it is `true`

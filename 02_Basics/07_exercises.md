@@ -2,7 +2,7 @@
 
 Here we will solve some problems with the concepts that we have learned as of now.
 
-## Easy:
+## Easy
 
 <details>
 <summary>Write a Rust program that prints "Hello, Rust!" to the console.</summary>
@@ -104,7 +104,7 @@ fn reverse_string(s: &str) -> String {
 ```
 </details>
 
-## Medium:
+## Medium
 
 <details>
 <summary>Write a function to check if a given string is a palindrome.</summary>

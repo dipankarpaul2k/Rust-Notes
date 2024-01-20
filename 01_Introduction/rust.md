@@ -2,7 +2,7 @@
 
 Rust is a programming language that was designed with a focus on system-level programming, providing a balance between low-level control over hardware resources and high-level abstractions that make programming more productive and safe. It was originally created by Graydon Hoare at Mozilla Research, with contributions from Brendan Eich, the creator of JavaScript and first released in 2010.
 
-## There are several key features that make Rust stand out:
+## There are several key features that make Rust stand out
 
 1. **Memory Safety:** One of the main highlights of Rust is its emphasis on memory safety without sacrificing performance. Rust uses a borrowing system to enforce strict ownership and borrowing rules at compile-time, preventing common issues such as null pointer dereferences, dangling pointers, and data races. This helps developers write more reliable and secure code.
 

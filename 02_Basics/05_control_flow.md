@@ -3,22 +3,9 @@
 
 The ability to control the flow of code execution based on conditions is fundamental. Rust, a language known for its emphasis on safety and performance, provides constructs such as `if` expressions and `loops` to control the flow of operations.
 
-- [if Expressions](#if-expressions)
-  - [Basic `if-else`:](#basic-if-else)
-  - [`if-else if` ladder:](#if-else-if-ladder)
-  - [Using `if` in Assignments:](#using-if-in-assignments)
-  - [Ternary Operator (Shorthand for Simple `if-else`):](#ternary-operator-shorthand-for-simple-if-else)
-- [Repetition with Loops](#repetition-with-loops)
-  - [`loop`:](#loop)
-    - [`loop` inside `loop`:](#loop-inside-loop)
-  - [`while`:](#while)
-  - [`for`:](#for)
-  - [Loop Control Statements:](#loop-control-statements)
-
-
 ## if Expressions
 
-### Basic `if-else`:
+### Basic `if-else`
 
 Example:
 ```rust
@@ -50,7 +37,7 @@ fn main() {
 
 The error indicates that Rust expected a bool but got an integer. Unlike languages such as Ruby and JavaScript, Rust will not automatically try to convert non-Boolean types to a Boolean. You must be explicit and always provide if with a Boolean as its condition.
 
-### `if-else if` ladder:
+### `if-else if` ladder
 
 Example:
 ```rust
@@ -71,7 +58,7 @@ fn main() {
 
 This example demonstrates a chain of `if-else if` statements. The conditions are checked in order, and the first true branch is executed.
 
-### Using `if` in Assignments:
+### Using `if` in Assignments
 
 Rust allows using `if` in assignments. The value assigned is the result of the executed block based on the condition.
 
@@ -96,7 +83,7 @@ fn main() {
 }
 ```
 
-### Ternary Operator (Shorthand for Simple `if-else`):
+### Ternary Operator (Shorthand for Simple `if-else`)
 
 In Rust, there is no traditional ternary operator, but this kind of shorthand using `if-else` works similarly.
 
@@ -114,7 +101,7 @@ fn main() {
 
 In Rust, loops allow you to repeatedly execute a block of code until a certain condition is met. There are three primary types of loops in Rust: `loop`, `while`, and `for`.
 
-### `loop`:
+### `loop`
 
 The `loop` keyword creates an infinite loop, which continues until explicitly interrupted using `break`.
 
@@ -181,7 +168,7 @@ Example:
 // Code after the labeled loops
 ```
 
-### `while`:
+### `while`
 
 The `while` loop continues executing the block of code as long as the specified condition is `true`.
 
@@ -199,7 +186,7 @@ fn main() {
 
 This construct eliminates a lot of nesting that would be necessary if you used `loop`, `if`, `else`, and `break`, and it’s clearer. While a condition evaluates to true, the code runs; otherwise, it exits the loop.
 
-### `for`:
+### `for`
 
 The `for` loop iterates over a range, a collection or an iterable object, executing the block of code for each iteration.
 
@@ -243,7 +230,7 @@ Here, the array `a` is directly used in the loop. In this case, the loop consume
 
 Rust's `for` loop is quite versatile, supporting various iterable objects. 
 
-### Loop Control Statements:
+### Loop Control Statements
 
 - **`break`:** Exits the loop.
 - **`continue`:** Skips the rest of the current iteration and proceeds to the next one.
@@ -266,5 +253,7 @@ fn main() {
 ```
 
 Loops in Rust offer flexibility and control, ensuring that you can efficiently iterate or repeatedly execute code based on your specific requirements.
+
+---
 
 For more information read the [rust book](https://doc.rust-lang.org/book/ch03-05-control-flow.html).

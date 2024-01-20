@@ -1,20 +1,6 @@
 <!-- omit in toc -->
 # Data Types
 
-- [Scalar Types](#scalar-types)
-  - [Integer Types:](#integer-types)
-  - [Floating-Point Types:](#floating-point-types)
-  - [Boolean Type:](#boolean-type)
-  - [Character Type:](#character-type)
-- [Compound Types](#compound-types)
-  - [Array Type:](#array-type)
-  - [Tuple Type:](#tuple-type)
-- [Some other types](#some-other-types)
-  - [String Type:](#string-type)
-  - [Slice Type:](#slice-type)
-  - [Reference Types:](#reference-types)
-
-
 Every value in Rust is of a certain data type, which tells Rust what kind of data is being specified so it knows how to work with that data. We’ll look at two data type subsets: 
 
 1. Scalar
@@ -26,7 +12,7 @@ Keep in mind that Rust is a statically typed language, which means that it must 
 
 A scalar type represents a single value. Rust has four primary scalar types: integers, floating-point numbers, Booleans, and characters. You may recognize these from other programming languages.
 
-### Integer Types:
+### Integer Type
 
 - An integer is a number without a fractional component.
 - The default integer type is `i32`.
@@ -44,7 +30,7 @@ let unsigned_integer: u64 = 100;
 - Unsigned variants can store numbers from 0 to 2<sup>n</sup> - 1.
 - The `isize` and `usize` types depend on the architecture of the computer your program is running on.
 
-### Floating-Point Types:
+### Floating-Point Types
 
 - `f32`: 32-bit floating point
 - `f64`: 64-bit floating point, default.
@@ -55,7 +41,7 @@ let float: f64 = 3.14;
 ```
 - Floating-point numbers are represented according to the IEEE-754 standard. The f32 type is a single-precision float, and f64 has double precision.
 
-### Boolean Type:
+### Boolean Type
 
 - `bool`: Represents true or false values.
 - Booleans are one byte in size.
@@ -65,7 +51,7 @@ Example:
 let is_true: bool = true;
 ```
 
-### Character Type:
+### Character Type
 
 - `char`: Represents a single Unicode character.
 - We can also store special characters like `$`,`@` and `&`, etc. using the character type.
@@ -86,7 +72,7 @@ let character: char = 'A';
 
 Compound types can group multiple values into one type. Rust has two primitive compound types: tuples and arrays.
 
-### Array Type:
+### Array Type
 
 - Fixed-size, homogeneous data structure.
 - Every element of an array must have the same type.
@@ -108,6 +94,10 @@ let numbers = [3; 5];
 
 println!("numbers = {:?}", numbers);  // [3, 3, 3, 3, 3]
 ```
+
+> The `println!` macro asks for the debug implementation with the `?` format parameter. `{}` gives the default output, `{:?}` gives the debug output. Types such as integers and strings implement the default output, but arrays only implement the debug output. This means that we must use debug output here.
+>
+> Adding `#`, eg `{numbers:#?}`, invokes a **“pretty printing”** format, which can be easier to read.
 
 **Mutable Array in Rust**
 
@@ -133,7 +123,7 @@ We changed the element at index `2` (third element) from `3` to `0`. This is pos
 
 > **Note:** Values inside an array can only be modified but cannot be deleted because the size of the array is fixed after initialization.
 
-### Tuple Type:
+### Tuple Type
 
 - Tuples group together elements of different types into one compound type. 
 - Fixed-size, heterogeneous data structure.
@@ -163,7 +153,9 @@ let second = tup.1; // 3.14
 
 println!("The value of y is: {y}");
 ```
-The tuple without any values has a special name, unit. This value and its corresponding type are both written () and represent an empty value or an empty return type. Expressions implicitly return the unit value if they don’t return any other value.
+The tuple without any values has a special name, `unit`. This value and its corresponding type are both written `()` and represent an empty value or an empty return type. Expressions implicitly return the `unit` value if they don’t return any other value.
+
+- You can think of it as `void` that can be familiar to you from other programming languages.
 
 **Mutable Tuple**
 
@@ -197,7 +189,7 @@ Here, we create a mutable tuple named mountain_heights. We then change its `2nd`
 
 We wiil learn about them in detail later.
 
-### String Type:
+### String Type
 
 - Represents a sequence of characters.
 - The default string type is a string slice `&str`.
@@ -210,7 +202,7 @@ let string_slice: &str = "Hello, Rust!";
 let owned_string: String = String::from("Rust is awesome!");
 ```   
 
-### Slice Type:
+### Slice Type
 
 - Represents a view into a portion of a contiguous sequence. 
 - Slice must reference an existing array or slice.
@@ -227,7 +219,7 @@ for num in slice {
 }   
 ```
 
-### Reference Types:
+### Reference Types
 
 - References allow you to borrow values without taking ownership. 
 - Reference must be explicitly created by borrowing.
@@ -265,5 +257,7 @@ println!("Value through mutable reference: {}", y);  // 15
 - The `*` operator is used to dereference the reference and access the underlying value.
 
 These are the basic data types in Rust. Understanding and using these types effectively will help you write safe and expressive Rust code.
+
+---
 
 For more information read the [rust book](https://doc.rust-lang.org/book/ch03-02-data-types.html).
