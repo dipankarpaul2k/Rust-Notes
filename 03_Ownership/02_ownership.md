@@ -97,7 +97,7 @@ Now, when we assign `fruit1` to `fruit2`, this is how the memory representation 
 
 ```mermaid
 flowchart LR
-    A[fruit1 Stack ptr] -->|Valid|B(Heap index 0)
+    A[fruit1 Stack ptr] -->|Invalid|B(Heap index 0)
     C[fruit2 Stack ptr] -->|Valid|B
 ```
 
