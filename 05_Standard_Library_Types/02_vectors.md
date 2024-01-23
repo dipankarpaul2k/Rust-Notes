@@ -1,4 +1,4 @@
-# Vector in Rust
+# Vectors in Rust
 
 In Rust, collections are data structures that allow you to store and manipulate multiple values. The standard library provides several collection types, and one of them is a vector.
 
@@ -54,7 +54,7 @@ println!("Third element: {}", third_element);
 
 Arrays and vectors are both used for storing collections of elements in Rust, but they have some key differences in terms of size flexibility, ownership, and functionality.
 
-#### Arrays:
+### Arrays:
 
 1. **Fixed Size:**
    - Arrays have a fixed size that is determined at compile time.
@@ -78,7 +78,7 @@ let array: [i32; 5] = [1, 2, 3, 4, 5];
 
 > **Note:** An array of type [i32; 5] and [i32; 3] are different, lengths is a part of the array type annotation.
 
-#### Vectors:
+### Vectors:
 
 1. **Dynamic Size:**
    - Vectors have a dynamic size and can grow or shrink during runtime.
@@ -101,13 +101,13 @@ let mut vector: Vec<i32> = vec![1, 2, 3, 4, 5];
 vector.push(6);  // Adding an element
 ```
 
-#### Commonalities:
+### Commonalities:
 
 - Both arrays and vectors store elements of the same type.
 - They support indexing to access individual elements(starting from index 0).
 - They can be iterated over using loops or iterators.
 
-#### Decision Factors:
+### Decision Factors:
 
 - Use arrays when the size is fixed and known at compile time.
 - Use vectors when the size may change during runtime or is unknown at compile time.
@@ -119,7 +119,7 @@ In the end, the choice between arrays and vectors depends on the specific requir
 
 These are the methods that are commonly implemented by Vectors.
 
-#### `append` method:
+### `append` method:
 
 Appends elements from another vector(collection) to the end of a vector.
 
@@ -129,7 +129,7 @@ vec.append(&mut vec![4, 5]);
 println!("{:?}", vec);  // Output: [1, 2, 3, 4, 5]
 ```
 
-#### `clear` method:
+### `clear` method:
 
 Removes all elements from a vector.
 
@@ -139,7 +139,7 @@ vec.clear();
 println!("{:?}", vec);  // Output: []
 ```
 
-#### `contains` method:
+### `contains` method:
 
 The `contains` method checks if a specific element exists in the vector. It returns a boolean value indicating whether the element is present or not.
 
@@ -154,7 +154,7 @@ if contains_two {
 }
 ```
 
-#### `drain` method:
+### `drain` method:
 
 Removes and yields a range of elements from the vector.
 
@@ -166,7 +166,7 @@ println!("{:?}", drained);  // Output: [2, 3, 4]
 
 > Collect: The `collect` method is used to transform an iterator into a collection. It allows you to collect the elements of an iterator into a variety of data structures, including vectors.
 
-#### `get` method:
+### `get` method:
 
 The `get` method retrieves an element from a vector at a specified index, returning an `Option` that contains either a reference to the element or `None` if the index is out of bounds.
 
@@ -180,7 +180,7 @@ match element {
 }
 ```
 
-#### `get_mut` method:
+### `get_mut` method:
 
 The `get_mut` method retrieves a mutable reference to an element in the vector at a specified index. It returns an `Option` that contains either the mutable reference or `None` if the index is out of bounds.
 
@@ -195,7 +195,7 @@ if let Some(mut_ref) = vec.get_mut(1) {
 }
 ```
 
-#### `insert` method:
+### `insert` method:
 
 Inserts an element at a specified index in the vector.
 
@@ -207,7 +207,7 @@ println!("{:?}", vec);  // Output: [1, 4, 2, 3]
 
 > **Note:** Inserting an element will shift all other values after specified index in the vector by one (+1 index).
 
-#### `is_empty` method:
+### `is_empty` method:
 
 Returns true if the vector is empty.
 
@@ -216,7 +216,7 @@ let vec = Vec::<i32>::new();
 println!("{}", vec.is_empty());  // Output: true
 ```
 
-#### `iter` method:
+### `iter` method:
 
 Provides an iterator over the elements of the vector, returning an iterator that yields the reference to the elements of the vector.
 
@@ -227,7 +227,7 @@ for i in v.iter() {
 }
 ```
 
-#### `len` method:
+### `len` method:
 
 Returns the number of elements in the vector.
 
@@ -236,7 +236,7 @@ let vec = vec![1, 2, 3];
 println!("{}", vec.len());  // Output: 3
 ```
 
-#### `new` method:
+### `new` method:
 
 Creates a new, empty vector.
 
@@ -244,7 +244,7 @@ Creates a new, empty vector.
 let vec: Vec<i32> = Vec::new();
 ```
 
-#### `push` method:
+### `push` method:
 
 Adds an element to the end of a vector.
 
@@ -254,7 +254,7 @@ vec.push(4);
 println!("{:?}", vec);  // Output: [1, 2, 3, 4]
 ```
 
-#### `pop` method:
+### `pop` method:
 
 Removes and returns the last element from a vector.
 
@@ -264,7 +264,7 @@ let popped = vec.pop();
 println!("{:?}", popped);  // Output: Some(3)
 ```
 
-#### `remove` method:
+### `remove` method:
 
 Removes the element at the specified index and returns it.
 
@@ -276,7 +276,7 @@ println!("{:?}", removed);  // Output: 2
 
 > **Note:** Removing an element will shift all other values after specified index in the vector by one (-1 index).
 
-#### `splice` method:
+### `splice` method:
 
 Removes a range of elements and replaces them with another collection.
 
@@ -287,7 +287,7 @@ vec.splice(1..4, new_elements);
 println!("{:?}", vec);  // Output: [1, 10, 11, 5]
 ```
 
-#### `split_off` method:
+### `split_off` method:
 
 Splits the vector into two at the given index.
 
@@ -298,7 +298,7 @@ println!("{:?}", vec);       // Output: [1, 2]
 println!("{:?}", new_vec);   // Output: [3, 4, 5]
 ```
 
-#### `truncate` method:
+### `truncate` method:
 
 Shortens the vector to the specified length.
 

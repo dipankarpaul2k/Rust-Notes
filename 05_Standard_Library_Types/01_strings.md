@@ -1,4 +1,4 @@
-# String in Rust
+# Strings in Rust
 
 We’ll first define what we mean by the term *string*. **A string is a collection of characters.** Rust has only one string type in the core language, which is the string literals `str` that is usually seen in its borrowed form `&str`, which are references to some UTF-8 encoded string data stored in the program’s binary and are therefore also *string slices*. And because it is a string slice, `str` doesn't own the string data, it is an immutable view into a sequence of UTF-8 bytes.
 
