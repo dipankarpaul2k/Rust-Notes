@@ -1,4 +1,3 @@
-<!-- omit in toc -->
 # Type Casting
 
 Type casting allows us to convert variables of one data type to another. In Rust, we use the `as` keyword to perform type casting.

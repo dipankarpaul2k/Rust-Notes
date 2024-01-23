@@ -1,4 +1,3 @@
-<!-- omit in toc -->
 # Variables and Mutability
 
 ## Variables

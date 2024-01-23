@@ -1,4 +1,3 @@
-<!-- omit in toc -->
 # Ownership
 
 Rust manages computer memory through **ownership rules** without memory leaks and runtime slowness. Unlike other languages with garbage collection or manual memory allocation, Rust's compiler enforces ownership rules. If violated, the program won't compile, ensuring efficient memory management.

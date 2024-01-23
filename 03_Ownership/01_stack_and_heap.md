@@ -1,4 +1,3 @@
-<!-- omit in toc -->
 # Stack and Heap
 
 In Rust, the stack and heap are memory areas your code uses at runtime. While usually handled automatically, Rust, being memory-safe, requires some awareness of these. Concepts like *ownership*, *references*, and *borrowing* ensure memory safety. To grasp these, it's crucial to know how to allocate and deallocate memory in the stack and heap.

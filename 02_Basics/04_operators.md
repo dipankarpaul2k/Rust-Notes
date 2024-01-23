@@ -1,4 +1,3 @@
-<!-- omit in toc -->
 # Operators
 
 In Rust, operators are symbols that represent computations or operations on values. They can be used for arithmetic, logical, bitwise, and other operations.

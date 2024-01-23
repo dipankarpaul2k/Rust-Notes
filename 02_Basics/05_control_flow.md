@@ -1,4 +1,3 @@
-<!-- omit in toc -->
 # Control Flow
 
 The ability to control the flow of code execution based on conditions is fundamental. Rust, a language known for its emphasis on safety and performance, provides constructs such as `if` expressions and `loops` to control the flow of operations.
