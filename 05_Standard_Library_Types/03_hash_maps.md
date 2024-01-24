@@ -184,7 +184,7 @@ Being aware of these points and carefully handling situations involving borrowin
 
 ## HashMap Methods
 
-Some commonly used hash methods.
+Some commonly used `HashMap` methods.
 
 ### 1. `insert`: 
 
