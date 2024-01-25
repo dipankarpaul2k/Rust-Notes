@@ -359,7 +359,26 @@ fn main() {
 
 ### 10. `entry`:
 
-Provides an API for conditional insertion and updating. Returns `Entry<'_, K, V>`, an enum representing a view into a single entry in a HashMap.
+Provides an API for conditional insertion and updating. The `entry` method returns an `Entry<'_, K, V>`, an `enum`, which represents either an occupied or vacant entry in the `HashMap`.
+
+Here is the basic syntax of the `entry` method:
+
+```rust
+fn entry(&mut self, key: K) -> Entry<K, V>
+```
+
+- `&mut self`: This indicates that the method modifies the HashMap in place.
+- `key: K`: The key for which you want to get the entry.
+
+The `Entry` enum has two variants:
+
+1. **Vacant:**
+    - Represents an entry where the key is not present in the HashMap.
+    - Provides methods to insert a new value for the specified key.
+
+2. **Occupied:**
+    - Represents an entry where the key is already present in the HashMap.
+    - Provides methods to access and modify the existing value.
 
 Example:
 ```rust
@@ -370,14 +389,101 @@ fn main() {
     my_map.insert("key1", "value1");
 
     // Use entry to conditionally insert or update
-    my_map.entry("key2").or_insert("value2");
+    my_map.entry("key2").or_insert("value2"); 
+    // This method is called on a "Vacant" entry
     my_map.entry("key1").and_modify(|v| *v = "new_value1");
+    // This method is called on an "Occupied" entry
 
     println!("{:?}", my_map); 
     // Output: {"key1": "new_value1", "key2": "value2"}
 }
 ```
 
+Few methods present in the `Entry` enum:
+
+1. **`or_insert` method:**
+
+    - This method is called on a `Vacant` entry.
+    - If the entry is vacant, it inserts a new key-value pair with the specified default value.
+    - It returns a mutable reference to the value(`&'a mut V`) associated with the key.
+
+    Example:
+    ```rust
+    my_map.entry("key2").or_insert("default_value");
+    ```
+
+2. **`and_modify` method:**
+
+    - This method is called on an `Occupied` entry.
+    - It takes a *closure* that is called with a mutable reference to the existing value(`&mut V`).
+    - The closure can modify the value in-place.
+    - The modified entry(`Self`) is then returned.
+
+    Example:
+    ```rust
+    my_map.entry("key1").and_modify(|v| *v = "new_value1");
+    ```
+
+3. **`or_default` method:**
+
+    - This method is called on a `Vacant` entry.
+    - If the entry is vacant, it inserts a new key-value pair with the default value of the value type (`Default` trait is required for the value type).
+    - It returns a mutable reference to the value(`&'a mut V`) associated with the key.
+
+    Example:
+    ```rust
+    my_map.entry("key3").or_default();
+    ```
+
+4. **`key` method:**
+
+    - This method is available on both `Vacant` and `Occupied` entries.
+    - It returns a reference to the key(`&K`) of the entry.
+
+    Example:
+    ```rust
+    let key = my_map.entry("key1").key();
+    ```
+
+5. **`remove` method:**
+
+    - This method is called on an `Occupied` entry.
+    - It removes the entry from the map and returns the value(`V`).
+
+    Example:
+    ```rust
+    let removed_value = my_map.entry("key1").remove();
+    ```
+
+**Example of modifying the value if key exists or insert a new entry**
+
+```rust
+use std::collections::HashMap;
+
+fn main() {
+    let data = vec![ // This is the raw data
+        ("male", 9),
+        ("female", 5),
+        ("male", 0),
+        ("female", 6),
+        ("female", 5),
+        ("male", 10),
+    ];
+
+    let mut survey_hash = HashMap::new();
+
+    for (gender, number) in data { // This gives a tuple of (&str, i32)
+        survey_hash
+            .entry(gender)
+            .and_modify(|v:&mut Vec<i32>| v.push(number))
+            .or_insert_with(|| vec![number]);
+    }
+
+    for (gender, numbers) in survey_hash {
+        println!("{:?}: {:?}", gender, numbers);
+    }
+}
+```
 ---
 
 For more information read [Rust Book](https://doc.rust-lang.org/book/ch08-03-hash-maps.html).
