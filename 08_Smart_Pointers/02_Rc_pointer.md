@@ -1,6 +1,10 @@
-# `Rc<T>` in Rust?
+# Reference Counting in Rust
 
-In Rust, `Rc<T>` stands for "Reference Counted," and it is a type that enables multiple ownership of the same data. Unlike the `Box<T>` type, which allows only a single owner of data, `Rc<T>` allows multiple owners. Each time a new owner is created, the reference count of the data is increased. When an owner goes out of scope, the reference count is decreased. When the reference count reaches zero, meaning there are no more owners, the data is cleaned up automatically, ensuring no invalid references remain.
+Reference counting in Rust is a form of automatic memory management that keeps track of the number of references to a piece of allocated memory. When the reference count drops to zero, indicating that there are no more references to the memory, the memory is automatically deallocated.
+
+In Rust, the `Rc<T>` (reference counted) smart pointer is used for reference counting. It allows multiple ownership of the same data by keeping track of the number of `Rc<T>` instances pointing to the data. Each time an `Rc<T>` instance is cloned, the reference count is incremented, and when an `Rc<T>` instance is dropped, the reference count is decremented. When the reference count reaches zero, the memory is deallocated.
+
+Reference counting is useful in situations where you need shared ownership of data that needs to be accessed from multiple parts of your program. However, reference counting has some limitations, such as its inability to handle cyclic references (where two or more objects reference each other in a loop), which can lead to memory leaks if not managed carefully.
 
 ## Why We Need `Rc<T>`
 

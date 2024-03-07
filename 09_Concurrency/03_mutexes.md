@@ -2,34 +2,55 @@
 
 Concurrency allows multiple threads to execute code simultaneously. Shared state concurrency involves multiple threads accessing and potentially modifying the same data concurrently, which can lead to data races and bugs. Rust's ownership system and type system ensure memory safety and prevent data races through various mechanisms.
 
-## Accessing Data Using Mutexes
+## Mutex
 
-**Mutexes** (short for *mutual exclusion*) are a synchronization primitive that allows only one thread to access a piece of data at a time. The `Mutex<T>` type in Rust wraps around the data and provides access through the `lock` method, which blocks the current thread until it can acquire the lock.
+Mutex (short for *mutual exclusion*) in Rust is a synchronization primitive that allows multiple threads to access a resource concurrently while ensuring that only one thread can access the resource at a time. This prevents data races and ensures thread safety.
 
-### API of `Mutex<T>`
+### API of Mutex
 
-The `Mutex<T>` type is part of the standard library's `std::sync` module. It is generic over the type `T`, which is the type of the data it protects. Here's a basic example of using a `Mutex<i32>`:
+#### `std::sync::Mutex`
+
+The `Mutex` type is used to create a mutex-protected value.
 
 ```rust
 use std::sync::Mutex;
 
-fn main() {
-    let data = Mutex::new(0);
-    {
-        let mut guard = data.lock().unwrap();
-        *guard += 1;
-    }
-    println!("Data: {:?}", data.lock().unwrap());
+let mutex = Mutex::new(42);
+```
+
+#### `std::sync::MutexGuard`
+
+If the lock is successfully acquired, the `lock` method returns a `Result` containing a `MutexGuard`. This guard is a smart pointer that implements the `Deref` and `DerefMut` traits, allowing you to access the protected data. The guard ensures that the `lock` is released when it goes out of scope, ensuring that other threads can acquire the lock.
+
+```rust
+let mut data = mutex.lock().unwrap();
+*data += 1;
+```
+
+#### `lock` method
+
+When a thread calls `lock` on a `Mutex`, it attempts to acquire the lock. It returns a `Result` containing a `MutexGuard` if the lock was successfully acquired. If the lock is currently held by another thread, the calling thread will be blocked until the lock becomes available. This means that the thread will not consume any CPU time while waiting for the lock, which is essential for efficient multithreading.. This blocking behavior is crucial for ensuring mutual exclusion, as only one thread can hold the lock at a time.
+
+```rust
+let mut data = mutex.lock().unwrap();
+```
+
+>  It's important to note that the `lock` method blocks the current thread until the lock is acquired. This can lead to potential deadlocks if care is not taken. Deadlocks occur when two or more threads are waiting for each other to release locks, causing all threads involved to remain blocked indefinitely.
+
+
+#### `try_lock` method
+
+To avoid potential deadlocks, you can use the `try_lock` method, which attempts to acquire the lock without blocking. The `try_lock` method is similar to `lock` but does not block the current thread. It returns `Some(MutexGuard)` if the lock is acquired. If the lock is not available, it returns `None` immediately, allowing you to handle the situation accordingly.
+
+```rust
+if let Some(mut data) = mutex.try_lock() {
+    *data += 1;
 }
 ```
 
-## Sharing a `Mutex<T>` Between Multiple Threads
+### How to Use Mutex
 
-To share a `Mutex<T>` between multiple threads, you can use the `Arc<T>` (*Atomic Reference Counting*) type to create a reference-counted pointer to the `Mutex<T>`. This allows multiple threads to have ownership of the `Mutex<T>` and safely access it concurrently.
-
-## Multiple Ownership with Multiple Threads
-
-**Example 1:**
+Here's a simple example demonstrating the use of a mutex:
 
 ```rust
 use std::sync::{Mutex, Arc};
@@ -75,13 +96,15 @@ In the example code, we're demonstrating how to share a `Mutex<i32>` between mul
 
 8. Finally, we print the updated counter value after all threads have finished executing. We lock the `Mutex` and print the counter value inside it. Since the `Mutex` ensures only one thread can access the counter at a time, we get the correct updated value even though multiple threads were incrementing it concurrently.
 
-Summary:
+## Sharing a `Mutex<T>` Between Multiple Threads
+
+To share a `Mutex<T>` between multiple threads, you can use the `Arc<T>` (*Atomic Reference Counting*) type to create a reference-counted pointer to the `Mutex<T>`. This allows multiple threads to have ownership of the `Mutex<T>` and safely access it concurrently.
 
 - `Arc` is used for reference counting, allowing multiple threads to share ownership of data.
 - `Mutex` ensures exclusive access to the shared data, preventing data races.
 - The combination of `Arc` and `Mutex` provides a safe way to share and modify data between multiple threads in Rust.
 
-**Example 2:**
+## Multiple Ownership with Multiple Threads
 
 ```rust
 use std::sync::{Mutex, Arc};
@@ -120,11 +143,6 @@ Data: [
     "Thread 4",
 ]
 ```
-
-
-## Atomic Reference Counting with `Arc<T>`
-
-`Arc<T>` is used to share ownership of data between multiple threads, ensuring that the data is only deallocated when all threads that have a reference to it are done. It uses atomic operations to manage the reference count, making it thread-safe.
 
 ## Similarities Between `RefCell<T>`/`Rc<T>` and `Mutex<T>`/`Arc<T>`
 

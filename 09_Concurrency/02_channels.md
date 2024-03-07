@@ -1,16 +1,67 @@
-# Message Passing Between Threads
+# Message Passing Between Threads using Channels
 
 In Rust, message passing between threads is a way for threads to communicate by sending data to each other. This can be useful for coordinating work, sharing data, and synchronizing operations.
 
-## Channels: What Are They and Why Do We Need Them?
+## Channels
 
-To accomplish message-sending concurrency, Rust's standard library provides an implementation of *channels*. Channels are a feature in Rust's standard library that allow threads to communicate by sending and receiving values. They provide a safe and efficient way to pass messages between threads. Channels consist of two parts: a transmitter and a receiver. The transmitter is used to send messages, and the receiver is used to receive them.
+Channels in Rust are a feature of its standard library's concurrency module (`std::sync::mpsc`) that allows communication between threads. They provide a way to send data from one thread to another in a thread-safe manner. Channels consist of two parts: a transmitter (sender) and a receiver.
 
-We need channels because Rust's ownership system prevents multiple threads from accessing data simultaneously, which helps prevent data races. Channels provide a way to safely pass ownership of data between threads, ensuring that only one thread can access the data at a time.
+### API of Channels
 
-## Using Channels
+#### `std::sync::mpsc::channel`
 
-Let's look at an example of how to use channels in Rust:
+This function `channel()` creates a new unbounded channel. It returns a tuple containing the sender and receiver.
+
+```rust
+use std::sync::mpsc::channel;
+
+let (sender, receiver) = channel();
+```
+
+#### `Sender<T>`
+  
+The `Sender<T>` type is used to send values of type `T` over the channel.
+
+```rust
+use std::sync::mpsc::Sender;
+
+let sender: Sender<i32> = sender;
+sender.send(42).unwrap();
+```
+
+#### `Receiver<T>`
+
+The `Receiver<T>` type is used to receive values of type `T` from the channel.
+
+```rust
+use std::sync::mpsc::Receiver;
+
+let receiver: Receiver<i32> = receiver;
+let received_value = receiver.recv().unwrap();
+println!("Received: {}", received_value);
+```
+
+### How to Use Channels
+
+#### Sending Data
+
+To send data over a channel, use the `send` method on the `Sender`:
+
+```rust
+sender.send(data).unwrap();
+```
+
+#### Receiving Data
+
+To receive data from a channel, use the `recv` method on the `Receiver`:
+
+```rust
+let received_data = receiver.recv().unwrap();
+```
+
+#### Example
+
+Here's a simple example demonstrating the use of channels:
 
 ```rust
 use std::sync::mpsc;
@@ -32,6 +83,10 @@ fn main() {
 In this example, we create a channel using `mpsc::channel()`, which returns a tuple containing a transmitter (`tx`) and a receiver (`rx`). We then spawn a new thread using `thread::spawn()` and move the transmitter into the new thread's closure. Inside the closure, we send a message (`String`) through the transmitter using `send()`.
 
 The main thread then receives the message using `recv()` on the receiver. Since `recv()` blocks until a value is available, the main thread will wait until the new thread sends a message before continuing. Finally, we print the received message.
+
+### Why Do We Need Channels?
+
+We need channels because Rust's ownership system prevents multiple threads from accessing data simultaneously, which helps prevent data races. Channels provide a way to safely pass ownership of data between threads, ensuring that only one thread can access the data at a time.
 
 ## Channels and Ownership Transference
 
@@ -69,7 +124,7 @@ error[E0382]: borrow of moved value: `val`
    |
 ```
 
-The `send` function takes ownership of its parameter, and when the value is moved, the receiver takes ownership of it. 
+The `send` function takes ownership of its parameter, and when the value is moved, the receiver takes ownership of it.
 
 ## Sending Multiple Values and Seeing the Receiver Waiting
 
