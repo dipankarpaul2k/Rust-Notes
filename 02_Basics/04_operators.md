@@ -3,11 +3,11 @@
 In Rust, operators are symbols that represent computations or operations on values. They can be used for arithmetic, logical, bitwise, and other operations.
 
 ## Arithmetic Operators
-   - `+` (Addition)
-   - `-` (Subtraction)
-   - `*` (Multiplication)
-   - `/` (Division)
-   - `%` (Remainder)
+- `+` (Addition)
+- `-` (Subtraction)
+- `*` (Multiplication)
+- `/` (Division)
+- `%` (Remainder)
 
 Example:
 ```rust
@@ -40,12 +40,12 @@ fn main() {
 ```
 
 ## Assignment Operators
-   - `=` (Assignment)
-   - `+=` (Add and assign)
-   - `-= ` (Subtract and assign)
-   - `*=` (Multiply and assign)
-   - `/=` (Divide and assign)
-   - `%=` (Remainder and assign)
+- `=` (Assignment)
+- `+=` (Add and assign)
+- `-= ` (Subtract and assign)
+- `*=` (Multiply and assign)
+- `/=` (Divide and assign)
+- `%=` (Remainder and assign)
 
 Example:
 ```rust
@@ -61,12 +61,12 @@ fn main() {
 ```
 
 ## Comparison Operators
-   - `==` (Equal to)
-   - `!=` (Not equal to)
-   - `<` (Less than)
-   - `>` (Greater than)
-   - `<=` (Less than or equal to)
-   - `>=` (Greater than or equal to)
+- `==` (Equal to)
+- `!=` (Not equal to)
+- `<` (Less than)
+- `>` (Greater than)
+- `<=` (Less than or equal to)
+- `>=` (Greater than or equal to)
 
 Example:
 ```rust
@@ -86,9 +86,9 @@ fn main() {
 > **Note:** Comparison operators are also known as **relational operators**.
 
 ## Logical Operators
-   - `&&` (Logical AND) returns `true` if both exp1 and exp2 are `true`
-   - `||` (Logical OR) returns `true` if any one of the expressions is `true`
-   - `!` (Logical NOT) returns `true` if the expression is `false` and returns `false`, if it is `true`
+- `&&` (Logical AND) returns `true` if both exp1 and exp2 are `true`
+- `||` (Logical OR) returns `true` if any one of the expressions is `true`
+- `!` (Logical NOT) returns `true` if the expression is `false` and returns `false`, if it is `true`
 
 ```rust
 fn main() {
