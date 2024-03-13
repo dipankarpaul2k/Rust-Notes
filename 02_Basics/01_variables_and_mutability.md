@@ -82,7 +82,3 @@ const MAX_POINTS: u32 = 100_000;
 ```
 
 Attempting to redeclare or shadow the constant `MAX_POINTS` with a new value will cause a compilation error. If you need a variable with a changeable value, use a mutable variable instead of a constant.
-
----
-
-For more information read the [rust book](https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html).

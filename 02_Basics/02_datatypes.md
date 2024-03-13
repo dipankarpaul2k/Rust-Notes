@@ -256,7 +256,3 @@ println!("Value through mutable reference: {}", y);  // 15
 - The `*` operator is used to dereference the reference and access the underlying value.
 
 These are the basic data types in Rust. Understanding and using these types effectively will help you write safe and expressive Rust code.
-
----
-
-For more information read the [rust book](https://doc.rust-lang.org/book/ch03-02-data-types.html).

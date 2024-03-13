@@ -111,4 +111,3 @@ fn main() {
 > The `||` operator evaluates to true because once the compiler sees a single true expression, it skips the evaluation and returns true directly.
 
 These are some of the fundamental operators in Rust. Understanding how they work will be crucial as you start writing Rust programs.
-

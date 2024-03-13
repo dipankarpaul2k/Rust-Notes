@@ -123,7 +123,3 @@ fn main() {
 ```
 
 Here, we have tried to convert the `float` type to `char`, hence we get an error. The error says that Rust is expecting a `u8` data type for conversion not `f32`.
-
----
-
-> There are other ways to convert the data types in Rust, but those are advanced topics and will be discussed later.

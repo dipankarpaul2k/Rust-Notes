@@ -252,7 +252,3 @@ fn main() {
 ```
 
 Loops in Rust offer flexibility and control, ensuring that you can efficiently iterate or repeatedly execute code based on your specific requirements.
-
----
-
-For more information read the [rust book](https://doc.rust-lang.org/book/ch03-05-control-flow.html).

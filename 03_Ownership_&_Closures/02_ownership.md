@@ -131,8 +131,8 @@ This copying is possible because of the `Copy` trait available in primitive type
 ## Ownership in Functions
 
 Passing a variable to a function will also move or copy the value, just as an assignment. 
-- Stack-only types will copy the data when passed into a function.
-- Heap data types will move the ownership of the variable to the function.
+- Stack allocated types will copy the data when passed into a function.
+- Heap allocated data types will move the ownership of the variable to the function.
 
 ### Passing String to a function
 ```rust
@@ -183,8 +183,8 @@ A table summarizing types that implement the `Copy` trait and types that are typ
 - Whether a compound or custom type implements `Copy` depends on its internal structure.
 
 
-| Type                           | Implements `Copy` | Heap-Allocated | Ownership Transfer |
-| ------------------------------ | ----------------- | -------------- | ------------------ |
+| Type      | Implements `Copy` | Heap-Allocated | Ownership Transfer |
+| ---------------- | ----------- | ----------------- | -------------- |
 | Integer Types                  | Yes               | No             | No                 |
 | Floating-Point Types           | Yes               | No             | No                 |
 | Character Type                 | Yes               | No             | No                 |
@@ -196,7 +196,3 @@ A table summarizing types that implement the `Copy` trait and types that are typ
 | Vec                            | No                | Yes            | Yes                |
 | HashMap, HashSet               | No                | Yes            | Yes                |
 | Custom Types                   | Depends           | Depends        | Depends            |
-
----
-
-For more information read the [rust book](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html).

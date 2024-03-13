@@ -156,6 +156,3 @@ fn add_numbers(a: i32, b: i32) -> i32 {
     a + b
 }
 ```
----
-
-For more information read the [rust book](https://doc.rust-lang.org/book/ch03-03-how-functions-work.html).

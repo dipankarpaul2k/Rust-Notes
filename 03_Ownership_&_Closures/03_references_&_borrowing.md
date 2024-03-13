@@ -235,11 +235,3 @@ fn main() {
 ```
 
 In this example, a reference `reference_to_string` is created inside a block, pointing to a `String` created within the same block. However, once the block ends, the `String` (`s`) is deallocated, leaving `reference_to_string` with a dangling reference. Attempting to use `reference_to_string` after the referenced data has been dropped results in undefined behavior and is typically caught by the Rust compiler.
-
----
-
-> Whew! I know this note might seem a bit lengthy, complex and overwhelming, but this three concepts - Ownership, Reference and Borrowing - are crucial in Rust because they play a big role in making sure memory is managed efficiently and more. So, take a moment to grasp these ideas before diving deeper.
-
----
-
-For more information read the [rust book](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html).

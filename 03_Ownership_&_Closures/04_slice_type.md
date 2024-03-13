@@ -23,11 +23,6 @@ let my_slice = &my_array[1..4]; // Takes elements from index 1 to 3 (4 is exclus
 }
 ```
 
-Here, let's look at the right-hand side of the expression,
-
-- `&numbers` - specifies a reference to the variable numbers (not the actual value)
-- `[1..4]` - is a notation for slicing the array from **start_index** `1` (inclusive) to **end_index** `4` (exclusive)
-
 ## Omit Indexes of a Rust Slice
 
 While slicing a data collection, Rust allows us to omit either the start index or the end index or both from its syntax.
@@ -102,7 +97,7 @@ fn main() {
     let my_slice = &my_string[7..11]; // Takes characters from index 7 to 10 (11 is exclusive)
 
     println!("Original String: {}", my_string); // Prints the original string
-    println!("Slice: {}", my_slice); // Prints 'Rust'
+    println!("Slice: {}", my_slice); // Rust
 }
 ```
 
@@ -178,22 +173,7 @@ fn main() {
 
 This example demonstrates sorting a subset of an array using a mutable slice.
 
-### Example 3: Extracting File Extension
-
-```rust
-fn main() {
-    let filename = "document.txt";
-
-    // Extract the file extension using a slice
-    let extension = &filename[document.len() - 3..];
-
-    println!("File Extension: {}", extension);
-}
-```
-
-In this example, we use a slice to extract the file extension from a filename.
-
-### Example 5: Splitting a String
+### Example 3: Splitting a String
 ```rust
 fn main() {
     let data = "apple,orange,banana";

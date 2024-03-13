@@ -76,25 +76,16 @@ fn main() {
 }
 ```
 
-Here
+Here, we allocate two variables, `x` and `y`, on the stack. However, the value of `x` is allocated on the heap when `Box::new()` is called. Thus, the actual value of `x` is a `pointer` to the heap.
 
-| **Address** | **Name** | **Value** |
-| ----------- | -------- | --------- |
-| 1           | y        | 222       |
-| 0           | x        | -->       |
-
-Like before, we allocate two variables, `x` and `y`, on the stack. However, the value of `x` is allocated on the heap when `Box::new()` is called. Thus, the actual value of `x` is a `pointer` to the heap.
-
-The memory now looks like this:
-
-**Stack memory**
+**Stack memory:**
 
 | **Address** | **Name** | **Value** |
 | ----------- | -------- | --------- |
 | 1           | y        | 222       |
 | 0           | x        | -->5476   |
 
-**Heap memory**
+**Heap memory:**
 
 | **Address** | **Name** | **Value** |
 | ----------- | -------- | --------- |
@@ -102,41 +93,13 @@ The memory now looks like this:
 
 Here, the variable `x` holds a pointer to the address `→5678` (an arbitrary address used for demonstration). Heap can be allocated and freed in any order. Thus it can end up with different addresses and create holes between addresses.
 
-So when `x` goes away, it first frees the memory allocated on the heap.
-
-Once the `main()` is completed, we free the stack frame, and everything goes away, freeing all the memory.
+So when `x` goes away, it first frees the memory allocated on the heap. Once the `main()` is completed, we free the stack frame, and everything goes away, freeing all the memory.
 
 We can make the memory live longer by transferring ownership where the heap can stay alive longer than the function which allocates the `Box`.
 
 ## Differences between Stack and Heap
 
-<table>
-    <thead>
-        <tr>
-            <th>Stack</th>
-            <th>Heap</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Accessing data in the stack is faster. </td>
-            <td>Accessing data in a heap is slower.</td>
-        </tr>
-        <tr>
-            <td>Managing memory in the stack is predictable and trivial.</td>
-            <td>Managing memory for the heap (arbitrary size) is non-trivial.</td>
-        </tr>
-        <tr>
-            <td>Rust stack allocates by default.</td>
-            <td>Box is used to allocate to the heap.</td>
-        </tr>
-        <tr>
-            <td>Primitive types and local variables of a function are allocated on the stack.</td>
-            <td>Data types that are dynamic in size, such as String, Vector, Box, etc., are allocated on the heap.</td>
-        </tr>
-    </tbody>
-</table>
-
----
-
-For more information read the [rust book](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html).
+- Accessing data in the stack is faster than in the heap due to its predictable nature.
+- Stack memory management is straightforward and predictable, while heap management is more complex.
+- Rust allocates primitive types and local variables on the stack by default, while heap allocation requires using `Box<T>` or similar constructs.
+- Stack is suitable for fixed-size data with predictable lifetimes, while the heap is ideal for dynamic data with uncertain lifetimes.
